@@ -1,6 +1,6 @@
 <template>
 	<view>
-		首页
+		会u眼
 	</view>
 </template>
 
@@ -11,18 +11,12 @@
 				
 			}
 		},
-		onLoad() {
-			this.getSwipers()
-		},
 		methods: {
-			//获取轮播图数据
-			getSwipers() {
-				console.log("获取轮播图数据")
-			}
+			
 		}
 	}
 </script>
 
 <style>
-	
+
 </style>
