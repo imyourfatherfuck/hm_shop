@@ -1,6 +1,6 @@
 <template>
 	<view>
-		会u眼
+		会员
 	</view>
 </template>
 
