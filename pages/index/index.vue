@@ -31,36 +31,14 @@
 		<view class="hot-goods">
 			<view class="tit">推荐商品</view>
 			<view class="goods-list">
-				<view class="goods-item">
-					<image src="http://m.itheima.com/images/slidead/mobile/20191213180241750x410.jpg"/>
+				<view class="goods-item" v-for="item in goods">
+					<image :src="item.imgUrl"/>
 					<view class="price">
-						<text>￥2199</text>
-						<text>￥2499</text>
+						<text>￥{{item.sellPrice}}</text>
+						<text>￥{{item.marketPrice}}</text>
 					</view>
 					<view class="name">
-						华为（HUAWEI）荣耀6Plus 16G双4G版
-					</view>
-				</view>
-				
-				<view class="goods-item">
-					<image src="http://m.itheima.com/images/slidead/mobile/20191213180241750x410.jpg"/>
-					<view class="price">
-						<text>￥2199</text>
-						<text>￥2499</text>
-					</view>
-					<view class="name">
-						华为（HUAWEI）荣耀6Plus 16G双4G版
-					</view>
-				</view>
-				
-				<view class="goods-item">
-					<image src="http://m.itheima.com/images/slidead/mobile/20191213180241750x410.jpg"/>
-					<view class="price">
-						<text>￥2199</text>
-						<text>￥2499</text>
-					</view>
-					<view class="name">
-						华为（HUAWEI）荣耀6Plus 16G双4G版
+						{{item.title}}
 					</view>
 				</view>
 				
@@ -74,11 +52,13 @@
 	export default {
 		data() {
 			return {
-				swipers: []
+				swipers: [],
+				goods: []
 			}
 		},
 		onLoad() {
 			this.getSwipers()
+			this.getGoods()
 		},
 		methods: {
 			//获取轮播图数据
@@ -87,6 +67,15 @@
 					url: 'api/swipers/findAll'
 				})
 				this.swipers = res.data.message
+			},
+			async getGoods() {
+				const res = await this.$myRequest({
+					///api/getgoods?pageIndex=3&pageSize=5
+					url: 'api/getgoods?pageIndex=1'
+				})
+				console.log(res)
+				this.goods = res.data.message
+				
 			}
 		}
 	}
@@ -161,6 +150,7 @@
 				.price {
 					color: $shop-color;
 					font-size: 36rpx;
+					margin: 20rpx 0 6px 0;
 					text:nth-child(2) {
 						color: #ccc;
 						font-size: 28rpx;
